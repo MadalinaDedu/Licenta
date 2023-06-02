@@ -1,0 +1,122 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>COVID PREDICTION</title>
+    <link rel="stylesheet" href="{% static 'css/main1.css' %}" />
+  </head>
+
+  <body>
+     <div class="header">
+      <h1 style=" color: #f2f2f2";>COVID PREDICTION</h1>
+      <br>
+    </div> 
+
+     <!-- <div class="topnav">
+      <a class="active" href="#home">HOME</a>
+      <a href="./index.html">PREDICT</a>
+    </div>  -->
+
+    <form method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      <input
+        class="custom-file-upload"
+        type="file"
+        accept="image"
+        name="image"
+        id="file"
+      />
+      <button class="compress_image" type="submit" id="submitBtn">
+        Predict
+      </button>
+      <div class="status">
+        <p id="message">{{ message }}</p>
+      </div>
+    </form>
+
+    <div class="wrapper">
+      <img
+        src="{% if image_url %}{{ image_url }}{% else %}{% static 'images/document.png' %}{% endif %}"
+        alt="Compressed Image"
+        width="400px"
+      />
+
+      <div class="info_container">
+        <ul>
+          <li>Name: <span class="name">{{ image.name }}</span></li>
+          <li>Prediction: <span class="type">{{ prediction }}</span></li>
+        </ul>
+      </div>
+    </div>
+
+  <!--   <div class="header">
+      <h4><span>Tensored </span>Django</h4>
+    </div> -->
+  
+    <footer>
+      <br>
+      <h2  style="color:#f2f2f2";><center>How Does it Work ?</center> </h2>
+      <div class="container">
+       
+          <div class="left section">
+              <!-- <h2>About Us</h2> -->
+              <div class="content">
+                  <h3 style="color:#f2f2f2";> Select an image for classification by pressing the CHOOSE FILE button</h3>
+              <!-- <div class="social">
+                  <a href="https://multiwebpress.com"><span class="fab fa-facebook-f"></span></a>
+                  <a href="https://instagram.com/multiwebpress"><span class="fab fa-instagram"></span></a>
+                  <a href="https://www.youtube.com/channel/UCvB-4cVzkhvu4TkTy1hs9zA"><span class="fab fa-youtube"></span></a>
+              </div> -->
+              </div>
+          </div>
+
+          <div class="center section">
+              <!-- <h2>Contact Us</h2> -->
+              <div class="content">
+                <h3  style="color:#f2f2f2";> Upload the selected image and press the PREDICT button </h3>
+                  <!-- <div class="place">
+                      <span class="fas fa-map-marker-alt"></span>
+                      <span class="text"> New York, USA</span>
+                  </div>
+                  <div class="phone">
+                      <span class="fas fa-phone-alt"></span>
+                      <span class="text"> +98-76543210</span>
+                  </div>
+                  <div class="email">
+                      <span class="fas fa-envelope"></span>
+                      <span class="text"> contact@example.com</span>
+                  </div> -->
+              </div>
+          </div>
+
+          <div class="right section">
+              <!-- <h2>Subscribe</h2> -->
+              <div class="content">
+                <h3  style="color:#f2f2f2";> The app will tell you what is the stage of the lungs</h3>
+                  <!-- <form action="#">
+                      <div class="email">
+                          <div class="text">Email*</div>
+                      </div>
+                      <input type="email" required>
+                      <div class="btn">
+                          <button type="submit">SUBSCRIBE</button>
+                      </div>
+                  </form> -->
+              </div>
+          </div>
+      </div>
+
+      <div class="footer-bottom">
+          <center>
+              <div><span>Powered By <a href="https://multiwebpress.com">© 2023 | Madalina - Florentina Dedu</a></span></div>
+          </center>
+      </div>
+  </footer>
+
+    <script src="{% static 'js/main.js' %}"></script>
+  </body>
+</html>
